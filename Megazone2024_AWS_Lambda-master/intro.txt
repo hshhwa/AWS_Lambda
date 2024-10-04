@@ -1,0 +1,367 @@
+
+################### 공지 ###################
+
+1. 4차 상담
+   - 메가존 외에도 2th plan 생각
+     방향성( 기술 분야,  도메인 분야, 지역)
+
+   - 기술과 내가 원하는 도메인을 사업하는 회사에 입사를 원하는 경우
+     도메인과 비즈니스 모델에 대한 큰 그림.
+     도서관 : 비즈니스 모델과 관련된 도서
+             코로나 전 후가 환경이 많이 바뀜.
+
+             입사를 하더라도 어느 정도 성장 가능성이 있는 회사에 가면 좋기때문임.
+
+    자소서에 반영.( 중이상의 회사에 지원 )
+
+   - 취업
+     취업 시장에서의 나의 가치를 어떻게 생각하는지?
+     ( 상, 중, 하 )
+
+     지원할 회사 리스트 : 50개 이상 작성
+     상 : 10, 회사 규모, 누구나 입사하고 싶어하는 곳
+     중 : 20, 상보다 낮지만, 그래도 괜찮은 회사
+     하 : 20, 그냥 가야 하는 회사
+
+     중, 하에서 서류 통과되고, 면접일이 정해지면
+     => 취업시장에서 중까지는 봐준다고 생각하면 됨.
+
+     하에서만 연락온다면,
+     => 중으로 지원하기 위해 부단히 노력
+        기술부족, 이력서 업그레이드 필요, 자소서도 업그레이드
+     => 회사리스트 20개 이상 작성해서 재지원 또는 신규지원
+
+2. AWS 사용
+   - 그날 실습으로 사용한 리소스는 그날 삭제
+   - 구독형 서비스는 사용 하면 안됨.
+     마켓플레이스의 솔루션, AWS QuickSight 등
+   - 프로젝트용 도메인
+     희망하는 도메인 네임이 있으면, 저한테 공유. 
+     프로젝트 팀 및 개인별로 도메인 네임을 구입하면 안됨.
+     메가존클라우드에서 최대한 비슷한 도메인 네임으로 구입할 예정.
+   - 리전 사용 제한이 없음.
+     서울 리전 사용.
+   - 계정 보안
+     계정 정보 및 Access Key 에 대한 유출에 주의.
+     Git 같은 곳에 올리면 절대 안됨.
+
+
+################### 서버리스 아키텍처 ###################
+
+1. 서버리스(serverless)
+   - 서버를 관리하지 않아도 되는 클라우드 컴퓨팅 모델
+     ( EC2 가 없어도 애플리케이션으로 서비스( => 코드가 실행 )가 가능함. )
+     AWS 에서는 AWS Lambda 와 같은 서비스를 통해 서버리스 아키텍처를 
+     쉬게 구현할 수 있음.
+
+   - Client -> API Gateway( Http API, REST API ) -> AWS Lambda( 함수 )
+     -> DynamoDB
+
+   - AWS Lambda 는 코드를 실행하고 자동으로 확장(Lambda 가 증가)하여
+     필요한 컴퓨팅 리소스를 제공함으로 개발자는 코드 작성 및 실행에 집중할 수
+     있으며 인프라 관리에 대한 부담을 덜 수 있게 됨.
+
+   - 이벤트 기반 아키텍처를 지원함으로, 애플리케이션의 특정 이벤트가
+     발생할 때마다 자동으로 실행되도록 함.
+
+   - AWS 서버리스 아키텍처는 페이-애즈-유-로 모델을 따르므로,
+     사용한 만큼만 비용을 지불함으로 인프라 비용을 절감할 수 있음.
+
+2. 서버리스 아키텍처의 장점
+   - 개발 시간 단축
+     함수 단위로 작성해서 API 로 바로 제공됨으로
+     Spring  등의 F/W 로 갭발하는 것보다 빠른 개발이 가능함.
+   - 비용 절감
+     코드가 실제로 실행되는 컴퓨팅 시간(밀리초)만 지불함으로
+     동작하지 않는 동안의 리소스에 대한 비용을 지불할 필요가 없으므로
+     비용이 크게 절감이 됨.
+   - 자동 확장
+     auto scaling.
+     서버 관리나 인프라 확장에 대한 걱정 없이 코드 작성 및 애플리케이션 구축에
+     집중할 수 있음.
+   - 간편한 API 구축
+
+3. 서버리스 아키텍처의 구축 예
+   - 동기식
+     웹 애플리케이션, 웹 서비스, 마이크로 서비스 등
+
+     Amazon API Gateway 를 HTTP endPoint 로 사용해서
+     웹클라이언트가 API 를 호출하고 API Gateway 가 요청을 Lambda 로 
+     라우팅함.
+
+   - 비동기식
+     백그라운드에서 데이터를 처리.
+     이미지/비디오 조작 및 처리, 비 데이터 처리 등
+
+4. AWS 서버리스 아키텍처
+   - AWS Lambda
+     서버를 관리할 필요 없이 코드를 실행할 수 있는 컴퓨팅 서비스.
+     Node.js, Python, Java 등 다양한 언어로 코드를 작성할 수 있음.
+     수신되는 트래픽 양에 따라 애플리케이션의 크기를 자동으로 조정.
+   - AWS API Gateway
+     API 를 생성, 게시 및 관리할 수 있는 관리형 서비스.
+     AWS Lambda 함수와 통합되는 REST API 를 만들 수 있음.
+   - AWS DynamoDB
+     관리형 NoSQL 데이터베이스 서비스.
+     서버리스 애플리케이션에서 자주 사용됨.
+   - 기타
+
+5. 백엔드를 서버리스로 AWS 를 사용한다면
+   - 향상된 확장성
+     AWS 서버리스를 통해 확장 및 배포가 용이하여 빠르게 성장하는 조직이나
+     빠른 개발이 필요한 애플리케이션에 유용
+   - 비용 절감
+     사용하는 리소스에 대한 비용만 지불하게됨으로 조직의 서비스 운영 비용을
+     절감
+   - 운영 부담 감소
+     서버 인스턴스를 관리할 필요가 없으므로 백엔드 팀의 인프라 운영
+     부담의 감소
+
+6. Lambda 및 DynamoDB 를 사용한 CRUD HTTP API 작성
+
+AWS 자습서 URL
+https://docs.aws.amazon.com/ko_kr/apigateway/latest/developerguide/http-api-dynamo-db.html
+
+1단계: DynamoDB 테이블 생성
+2단계: Lambda 함수 생성
+3단계: HTTP API 생성
+4단계: 경로 생성
+5단계: 통합 생성
+6단계: 경로에 통합 연결
+7단계: API 테스트
+
+전체 조회 : get
+https://lf2afyx6f6.execute-api.us-east-1.amazonaws.com/items
+
+등록 : put
+https://lf2afyx6f6.execute-api.us-east-1.amazonaws.com/items
+{
+    "id" : "2222",
+    "price" : 1000,
+    "name" : "name2"
+}
+
+한건 조회 : get
+https://lf2afyx6f6.execute-api.us-east-1.amazonaws.com/items/2222
+
+삭제 : delete
+https://lf2afyx6f6.execute-api.us-east-1.amazonaws.com/items/2222
+
+
+8단계: 정리
+
+
+
+
+7. Lambda 의 eventBridge 사용
+
+1분마다 DynamoDB 의 지정된 테이블에 데이터 등록하는 기능을 구현.
+
+1분마다 : 스케줄링을 위해서 eventBridge 를 Lambda에 연결
+
+
+7.1 테스트용 Lambda 생성
+   - Lambda name : eventTestFunction
+   - 자습서의 코드를 복붙
+   - 기존의 CURD 에서 C 를 제외한 나머지 코드는 모두 삭제
+
+   - 참고 : AWS API 문서 보기
+     Amazon DynamoDB 의 클라이언트 사용
+     https://docs.aws.amazon.com/ko_kr/sdk-for-javascript/v3/developer-guide/dynamodb-example-dynamodb-utilities.html
+     
+아래는 Lambda 코드임.
+
+import { DynamoDBClient } from "@aws-sdk/client-dynamodb";
+import {
+  DynamoDBDocumentClient,
+  PutCommand,
+} from "@aws-sdk/lib-dynamodb";
+
+const client = new DynamoDBClient({});
+
+const dynamo = DynamoDBDocumentClient.from(client);
+
+const tableName = "http-crud-tutorial-items";
+
+export const handler = async (event, context) => {
+  let body;
+  let statusCode = 200;
+  const headers = {
+    "Content-Type": "application/json",
+  };
+
+  try {
+        await dynamo.send(
+          // 테이블에 항목 등록
+          new PutCommand({
+            TableName: tableName,
+            Item: {
+              // id 를 자동으로 생성하도록 해야 함.
+              id: String(Date.now()),
+              price: 1000,
+              name: "item name",
+            },
+          })
+        );
+        body = `Put item ${String(Date.now())}`;
+  } catch (err) {
+    statusCode = 400;
+    body = err.message;
+  } finally {
+    body = JSON.stringify(body);
+  }
+
+  return {
+    statusCode,
+    body,
+    headers,
+  };
+};
+
+   - eventTestFunction Lambda test
+     DynamoDB 에 test 데이터가 등록된 결과 확인.
+     => 데이터가 정상적으로 등록이 되었다면, Lambda code 에 문제가 없음.
+
+
+7.2 eventBridge 연결
+   - 규칙명 : dynamodb-1min-insert-timer
+   - 규칙 설명 : 1minute teimer
+   - 규칙 유형 : 예약 표현식
+   - 예약 표현식 : rate(1 minute)
+
+
+7.3 DynamoDB 에서 1분 단위로 데이터가 등록이 되는지 확인.
+
+
+
+
+
+8. AWS Cognito 사용
+   - 웹과 앱에 대한 인증, 권한 부여 및 사용자 관리 서비스임.
+
+     개발자는 손쉽게 애플리케이션에 사용자 인증, 권한 부여, 사용자 데이터 관리
+     기능을 통합할 수 있음.
+
+   - 두 가지 구성 요소
+     
+     사용자 풀(User Pool)
+        - 애플리케이션 사용자를 관리.
+        - 이 풀에서 제공하는 기능은 등록, 로그인, 로그아웃, 비밀번호 재설정, MFA
+        - 사용자 그룹 정책을 정의하여 각 사용자에 대해 맞춤형 권한 설정
+        - 사용자 인증을 완료하면 Cognito 는 JWT 를 사용자에게 반환함.
+          이 JWT 는 API Gateway 에서 자격증명으로 사용할 수 있음.
+     자격 증명 풀(Identity Pool)
+        - 애플리케이션이 AWS 리소스에 접근할 수 있도록 하는 권한 관리 시스템
+        - 사용자가 인증되었는지 여부에 따라 서로 다른 권한을 부여할 수 있음.
+        - 이를 통해서 애플리케이션은 인증된 사용자에게 특정 AWS 서비스(DynamoDB 등)
+          에 접근할 수 있는 자격 증명을 부여할 수 있음.
+
+8.1 Cognito 로 로그인 과정
+    8.1 흐름
+        - 인증 및 인가 과정이 없는 형태
+          client( PostMan ) -> apiGateway -> Lamda
+        - 인증 및 인가를 추가
+          client( PostMan with access token ) -> 
+          apiGateway( accessKey 확인 ) -> 
+          Lamda
+
+    8.2 서비스(인증 및 인가) 구축 과정
+        - Lamda 생성
+        - api Gateway 생성
+        - api Gateway + Lamda 통합
+          특정 라우팅에 대해 호출되는 Lamda 를 연결
+        - Cognito 생성
+          6단계를 진행해서 생성
+        - api Gateway + Cognito 연결
+          권한 부여자 설정시 AWS 규칙을 따라서 설정해야 함.
+          => 생성한 Cognito 의 정보를 바탕으로 설정해야 함.
+             Cognito  ARN, 사용자 풀 ID, 앱 클라이언트 ID
+        - AWS Cognito 사용자 생성 및 tokent 확인
+        - PostMan 서비스 요청 with accessToken
+
+    8.3 Cognito 생성 과정
+        - 1단계 : 로그인 환경 구성
+                  사용자가 로그인할 때 사용할 수 있는 자격증명 공급자를 구성.
+                  - AWS Cognito 만 사용하는 것으로 설정.
+                  - 로그인 옵션은 이메일로만 사용하도록 설정.
+
+        - 2단계 : 보안 요구 사항 구성
+                  - 암호 정책 설정
+                    사용자가 cognito sign up 시 입력할 정보
+                    email, pw 를 입력시, pw 에 대한 암호정책을 설정.
+                  - MFA 설정
+                    Authy 등을 사용한 추가인증을 하지 않도록 함.
+                    예, 은행 공인인증서 로그인 > 계좌이체 > 이체번호
+        - 3단계 : 가입 환경 구성
+                  기본 설정 그대로 하고, 다음 단계로 이동
+        - 4단계 : 가입 후 메시지 전송에 대한 구성
+                  사용자 풀에서 사용자에게 이메일 메시지를 보내는 방법을 구성.
+                  Cognito 사용을 위한 사용자가 계정 등록시 인증번호를
+                  메일 보내게 됨.
+
+                  현재 사용자 풀에 등록된 사용자인지 한 번더 체크하는 것임.
+
+                  "이메일 공급자" 만 "Cognito를 사용하여 이메일 전송" 을
+                  선택해서 적용.
+                  => 개발을 위한 임시 및 테스트 용도임.
+        - 5단계 : 앱 통합
+                 사용자 풀 생성
+                 - 사용자 풀 이름 설정.
+                 - 호스팅 인증 페이지
+                   Cognito 사용을 위한 사용자 계정 등록을 위한 것임.
+                   사용자 등록 화면을 사용할 수 있음.
+                   화면에 "Sign up" 메뉴를 이용해서 가입.
+                 - Cognito 도메인 설정
+                   호스팅 UI 를 사용하기 위한 엔드포인트 도메인
+                 - 초기 앱 클라이언트 설정
+                   사용자 풀에 여러 개의 앱클라이언트가 사용될 수 있음.
+                 - 허용된 콜백 URL
+                   사용자 인증(Sign Up) 후 Cognito에서 발급된
+                   token(accessKey)를 수신하는 URL 을 설정.
+                   현재는 만든 시스템이 없어 임의의 통신이 되는 URL로 설정.
+                   "https://google.com"
+                 - 고급 앱 클라이언트 설정 > OAuth 2.0 권한 부여 유형
+                   access token 을 받기 위해, "암시적 권한 부여" 로 변경.
+
+                   허용된 콜백 URL 뒤에 token 정보가 붙어서 수신됨.
+                   https://google.com#token.......
+
+        - 6단계 : 검토 및 생성
+                  전 단계에서 설정했던 내용을 확인 후 사용자 풀 생성하면 됨.
+
+    8.4 Cognito 에서 사용자 ID 생성 및 token 정보 확인
+        가입 후 반환되는 access token 으로 AWS API Gateway 테스트를 해야 함.
+
+        - 생성한 user pool 선택
+        - 아래의 탭 중에서 "앱 통합" 선택
+        - "앱 클라이언트 목록" 에서는
+          "생성했던 앱 클라이언트" 선택
+        - 이동된 페이지의 항목 중에서
+          "호스팅 UI" 항목의 "호스팅 UI 보기" 버튼을 선택
+        - "Sign Up" 선택해서, cognito user pool 에 가입
+        - 등록이 성공하면, confirmation code 가 
+          등록시 사용한 메일로 수신됨.
+        - 5단계에서 설정한 콜백 URL 로 이동됨.
+          URL 에 수신된 token 정보를 확인 및 메모장에 복사.
+
+    8.5 ApiGateway 에 Cognito 권한 부여자 연결
+        - 권한 부여자를 연결한 ApiGateway 선택
+        - 왼쪽 메뉴에서 Develop > Authorization 을 선택
+        - 라우팅 선택. GET 선택
+        - 오른쪽의 "권한 부여자 생성 및 연결" 선택
+          권한 부여자 유형 : JWT
+          권한 부여자 설정 : 
+             이름 : 
+             발급자 URL :
+               Cognito 의 ARN, 사용자 풀ID 를 이용해서 URL 작성해야 함.
+
+               ARN : cognito-idp.us-east-1
+               사용자 풀ID : us-east-1_Jq2y1Sk0q
+
+               https://cognito-idp.us-east-1.amazonaws.com/us-east-1_Jq2y1Sk0q
+
+             대상 :
+               클라이언트 앱 목록 중에서 하나를 선택.
+               현재는 하나만 있음. 클라이언트 ID 를 선택해서 사용.
+
+    8.6 PostMan 서비스 요청 with accessToken
